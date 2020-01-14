@@ -1,0 +1,21 @@
+{
+  "name": "todo_reactstrap",
+  "version": "1.0.0",
+  "description": "Todo list app from traversy Media",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "Eugene Hamill",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^5.0.2",
+    "express": "^4.17.1",
+    "mongoose": "^5.8.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
