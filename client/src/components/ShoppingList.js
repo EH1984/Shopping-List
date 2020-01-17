@@ -32,14 +32,14 @@ const ShoppingList = props => {
       </Button> */}
       <ListGroup>
         <TransitionGroup className='shopping-list mt-5'>
-          {items.map(({ id, name }) => (
-            <CSSTransition key={id} timeout={500} classNames='fade'>
+          {items.map(({ _id, name }) => (
+            <CSSTransition key={_id} timeout={500} classNames='fade'>
               <ListGroupItem>
                 <Button
                   className='remove-btn'
                   color='danger'
                   size='sm'
-                  onClick={() => onDeleteClick(id)}
+                  onClick={() => onDeleteClick(_id)}
                 >
                   &times;
                 </Button>
