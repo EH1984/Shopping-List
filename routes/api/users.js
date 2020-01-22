@@ -60,12 +60,12 @@ router.post('/', async (req, res) => {
       { expiresIn: 360000 },
       (err, token) => {
         if (err) throw err;
-        res.status(400).json({
+        res.status(200).json({
           token,
           user: {
-            id: user.id,
-            name: user.name,
-            email: user.email
+            id: newUser.id,
+            name: newUser.name,
+            email: newUser.email
           }
         });
       }
@@ -79,6 +79,15 @@ router.post('/', async (req, res) => {
 // @route   DELETE api/users
 // @desc    Delete a User
 // @access  Public
-router.get('/', (req, res) => {});
+router.delete('/:id', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    await user.remove();
+    res.json({ success: true });
+  } catch (err) {
+    console.log(err.message);
+    res.json({ success: false });
+  }
+});
 
 module.exports = router;

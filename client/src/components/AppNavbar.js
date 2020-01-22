@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-
+import RegisterModal from '../components/auth/RegisterModal';
+import Logout from './auth/Logout';
 import {
   Collapse,
   Navbar,
@@ -25,7 +26,8 @@ const AppNavbar = props => {
           <Collapse isOpen={isOpen} navbar>
             <Nav className='ml-auto' navbar>
               <NavItem>
-                <NavLink href='https://github.com/EH1984'>GitHub</NavLink>
+                <RegisterModal />
+                <Logout />
               </NavItem>
             </Nav>
           </Collapse>

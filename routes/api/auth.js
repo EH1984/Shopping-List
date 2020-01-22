@@ -30,17 +30,22 @@ router.post('/', async (req, res) => {
     if (matched) {
       // Send json web token
       const payload = { id: user.id };
-      jwt.sign(payload, config.get('jwtSecret'), (err, token) => {
-        if (err) throw err;
-        res.status(200).json({
-          token,
-          user: {
-            id: user.id,
-            name: user.name,
-            email: user.email
-          }
-        });
-      });
+      jwt.sign(
+        payload,
+        config.get('jwtSecret'),
+        { expiresIn: 360000 },
+        (err, token) => {
+          if (err) throw err;
+          res.status(200).json({
+            token,
+            user: {
+              id: user.id,
+              name: user.name,
+              email: user.email
+            }
+          });
+        }
+      );
     } else {
       res.status(401).json({ msg: 'Invalid Password!' });
     }
