@@ -19,7 +19,10 @@ router.get('/', (req, res) => {
 // @access  Private
 router.post('/', auth, (req, res) => {
   const newItem = new Item({ name: req.body.name });
-  newItem.save().then(item => res.json(item));
+  newItem
+    .save()
+    .then(item => res.json(item))
+    .catch(err => res.status(404).json({ success: false }));
 });
 
 // @route   DELETE api/items/:id

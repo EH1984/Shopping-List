@@ -36,14 +36,17 @@ const ShoppingList = props => {
           {items.map(({ _id, name }) => (
             <CSSTransition key={_id} timeout={500} classNames='fade'>
               <ListGroupItem>
-                <Button
-                  className='remove-btn'
-                  color='danger'
-                  size='sm'
-                  onClick={() => onDeleteClick(_id)}
-                >
-                  &times;
-                </Button>
+                {props.isAuthenticated ? (
+                  <Button
+                    className='remove-btn'
+                    color='danger'
+                    size='sm'
+                    onClick={() => onDeleteClick(_id)}
+                  >
+                    &times;
+                  </Button>
+                ) : null}
+
                 {name}
               </ListGroupItem>
             </CSSTransition>
@@ -60,7 +63,8 @@ ShoppingList.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  item: state.item
+  item: state.item,
+  isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(mapStateToProps, { getItems, deleteItem, loadUser })(
